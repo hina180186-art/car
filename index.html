@@ -1,0 +1,548 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+  <title>VALKYRIE GT-R | Aurelia Bespoke Automobili</title>
+  <meta name="description" content="Experience the bespoke twin-turbo V8 Valkyrie GT-R. 1,180 HP, autoclave carbon monocoque, ultra-luxury automotive scrollytelling.">
+  <meta name="theme-color" content="#030303">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:ital,wght@0,400;0,600;0,700;1,700&family=JetBrains+Mono:wght@400;500;700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=Syncopate:wght@400;700&display=swap" rel="stylesheet">
+
+  <!-- Stylesheet -->
+  <link rel="stylesheet" href="./style.css">
+
+  <!-- GSAP & ScrollTrigger -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <!-- Studio Freight Lenis Smooth Scroll -->
+  <script src="https://unpkg.com/lenis@1.1.20/dist/lenis.min.js"></script>
+  <!-- Auto-generated local frame playlist array (works directly on file:// and static hosts) -->
+  <script src="./frames-data.js"></script>
+</head>
+<body>
+
+  <!-- ========================================================================
+       PRELOADER (Pitch-Black #030303 & Metallic Amber-Gold #F59E0B Progress)
+       ======================================================================== -->
+  <div id="preloader">
+    <div class="preloader-ambient"></div>
+    <div class="preloader-content">
+      <div class="brand-emblem">
+        <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M20 2L37 12V28L20 38L3 28V12L20 2Z" stroke="#F59E0B" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M20 9L31 16V24L20 31L9 24V16L20 9Z" fill="rgba(245, 158, 11, 0.15)" stroke="#F59E0B" stroke-width="1"/>
+          <circle cx="20" cy="20" r="3" fill="#F59E0B"/>
+        </svg>
+        <span class="brand-marque">AURELIA BESPOKE</span>
+      </div>
+
+      <h1 class="preloader-title">VALKYRIE GT-R</h1>
+      <p class="preloader-subtitle">4.0L TWIN-TURBO FLAT-PLANE V8 // BESPOKE TELEMETRY</p>
+
+      <div class="preloader-track-wrap">
+        <div class="preloader-track">
+          <div class="preloader-bar" id="preloader-bar"></div>
+        </div>
+      </div>
+
+      <div class="preloader-meta">
+        <span class="preloader-status" id="preloader-status">CALIBRATING CHASSIS & SENSORS...</span>
+        <span class="preloader-counter" id="preloader-counter">000%</span>
+      </div>
+
+      <button class="ignition-btn" id="ignition-btn">
+        <span>ENGAGE IGNITION</span>
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+      </button>
+    </div>
+  </div>
+
+  <!-- ========================================================================
+       PERSISTENT LUXURY HUD & NAVIGATION
+       ======================================================================== -->
+  <!-- Top Bar -->
+  <header class="hud-topbar" id="hud-topbar">
+    <a href="#section-home" class="hud-logo" id="logo-link">
+      <svg class="logo-crest" viewBox="0 0 40 40" fill="none">
+        <path d="M20 2L37 12V28L20 38L3 28V12L20 2Z" stroke="currentColor" stroke-width="1.8"/>
+        <circle cx="20" cy="20" r="4" fill="currentColor"/>
+      </svg>
+      <div class="logo-text-group">
+        <span class="logo-sub">AURELIA BESPOKE</span>
+        <span class="logo-main">VALKYRIE GT-R</span>
+      </div>
+    </a>
+
+    <!-- Clickable Chapter Navigation (01 HOME • 02 ABOUT • 03 PERFORMANCE • 04 TRACK • 05 RESERVE) -->
+    <nav class="hud-nav" id="hud-nav">
+      <a class="nav-link active" data-chapter="0" data-scroll="0.0">01 HOME</a>
+      <span class="nav-bullet">•</span>
+      <a class="nav-link" data-chapter="1" data-scroll="0.25">02 ABOUT</a>
+      <span class="nav-bullet">•</span>
+      <a class="nav-link" data-chapter="2" data-scroll="0.48">03 PERFORMANCE</a>
+      <span class="nav-bullet">•</span>
+      <a class="nav-link" data-chapter="3" data-scroll="0.70">04 TRACK</a>
+      <span class="nav-bullet">•</span>
+      <a class="nav-link" data-chapter="4" data-scroll="0.90">05 RESERVE</a>
+    </nav>
+
+    <!-- Top Right Actions -->
+    <div class="hud-actions">
+      <!-- Web Audio V8 Engine Sound Toggle -->
+      <button class="audio-btn" id="audio-toggle" title="Toggle Twin-Turbo V8 Engine Acoustics">
+        <span class="sound-bars">
+          <span class="sound-bar"></span>
+          <span class="sound-bar"></span>
+          <span class="sound-bar"></span>
+        </span>
+        <span id="audio-text">SOUND [OFF]</span>
+      </button>
+
+      <!-- Allocation CTA Button -->
+      <button class="cta-nav-btn" id="top-allocation-btn">
+        <span>ALLOCATION</span>
+        <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"/></svg>
+      </button>
+    </div>
+  </header>
+
+  <!-- Bottom Telemetry Strip (Live Scroll-Updated) -->
+  <aside class="hud-telemetry" id="hud-telemetry">
+    <div class="telemetry-left">
+      <div class="telemetry-item">
+        <span class="telemetry-label">BOOST</span>
+        <span class="telemetry-value accent" id="tel-boost">2.4 BAR</span>
+      </div>
+      <div class="telemetry-gauge-wrap">
+        <div class="telemetry-gauge-fill" id="tel-boost-gauge"></div>
+      </div>
+      <div class="telemetry-divider"></div>
+      <div class="telemetry-item">
+        <span class="telemetry-label">OUTPUT</span>
+        <span class="telemetry-value" id="tel-hp">1,180 HP</span>
+      </div>
+      <div class="telemetry-divider"></div>
+      <div class="telemetry-item">
+        <span class="telemetry-label">GEAR</span>
+        <span class="telemetry-value accent" id="tel-gear">4</span>
+      </div>
+    </div>
+
+    <div class="telemetry-center">
+      <div class="telemetry-item">
+        <span class="telemetry-label">SPEED</span>
+        <span class="telemetry-value accent" id="tel-speed">248 KM/H</span>
+      </div>
+      <div class="telemetry-divider"></div>
+      <div class="telemetry-item">
+        <span class="telemetry-label">G-FORCE</span>
+        <span class="telemetry-value" id="tel-gforce">1.8 G</span>
+      </div>
+    </div>
+
+    <div class="telemetry-right">
+      <div class="telemetry-item">
+        <span class="telemetry-label">CHASSIS</span>
+        <span class="telemetry-value">01 / 40</span>
+      </div>
+      <div class="telemetry-divider"></div>
+      <div class="telemetry-item">
+        <span class="telemetry-label">FRAME</span>
+        <span class="telemetry-value accent" id="tel-frame">FRAME 001 / 600</span>
+      </div>
+    </div>
+  </aside>
+
+  <!-- ========================================================================
+       1100VH SCROLL CONTAINER & STICKY STAGE
+       ======================================================================== -->
+  <main id="scroll-container">
+    <div id="sticky-stage">
+      <!-- Razor-Sharp DPR-Scaled Cover Canvas -->
+      <canvas id="scrolly-canvas"></canvas>
+      <div class="canvas-vignette"></div>
+      <div class="canvas-scanlines"></div>
+
+      <!-- ====================================================================
+           STORY OVERLAY (Strict Anti-Overlap Margin Architecture)
+           Left: 2.5vw, max-width: 290px | Right: 2.5vw, max-width: 265px
+           Center 58% is 100% unobstructed for the supercar
+           ==================================================================== -->
+      <div class="story-overlay" id="story-overlay">
+
+        <!-- SECTION 1 — HOME (0% – 18% Scroll | Front Headlights & Hood Heat Shimmer) -->
+        <section class="story-panel active" id="section-home" data-range="0,0.18">
+          <div class="margin-panel-left">
+            <h2 class="hero-lead-title">FORGED IN FIRE.</h2>
+            <div class="hero-subtitle">4.0L Twin-Turbo Flat-Plane V8 • 1,180 HP</div>
+            <p class="hero-description">
+              Hand-built in Sant'Agata atelier. Symmetrical carbon composite architecture engineered for unrestrained aerodynamic supremacy.
+            </p>
+          </div>
+          <!-- Animated amber scroll indicator at bottom center -->
+          <div class="scroll-indicator-wrap" id="home-scroll-indicator">
+            <div class="scroll-mouse">
+              <div class="scroll-wheel"></div>
+            </div>
+            <span class="scroll-label">SCROLL TO ENGAGE TELEMETRY</span>
+          </div>
+        </section>
+
+        <!-- SECTION 2 — ABOUT (20% – 38% Scroll | Smoke Billow & Golden Aero Light Streaks) -->
+        <section class="story-panel" id="section-about" data-range="0.20,0.38">
+          <div class="margin-panel-left">
+            <div class="carbon-card">
+              <div class="card-chapter-tag">02 // ARCHITECTURE</div>
+              <h3 class="card-title">ABOUT THE MACHINE</h3>
+              <p class="card-desc">
+                Hand-laid autoclave carbon monocoque sculpted in the wind tunnel for zero-compromise mechanical purity and aerodynamic poise.
+              </p>
+            </div>
+          </div>
+          <div class="margin-panel-right">
+            <div class="stat-pill">
+              <div class="stat-pill-row">
+                <div class="stat-pill-item">
+                  <span class="stat-pill-label">DRY WEIGHT</span>
+                  <span class="stat-pill-val">1,240 <span>KG</span></span>
+                </div>
+                <div class="telemetry-divider" style="width: 100%; height: 1px;"></div>
+                <div class="stat-pill-item">
+                  <span class="stat-pill-label">DRAG COEFF</span>
+                  <span class="stat-pill-val">0.27 <span>Cd</span></span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- SECTION 3 — PERFORMANCE (40% – 60% Scroll | High-Speed Apex Drift & Tire Smoke) -->
+        <section class="story-panel" id="section-perf" data-range="0.40,0.60">
+          <div class="margin-panel-left">
+            <div class="carbon-card">
+              <div class="card-chapter-tag">03 // POWERTRAIN</div>
+              <h3 class="card-title">TWIN-TURBO FURY</h3>
+              <p class="card-desc">
+                Dual ceramic ball-bearing turbochargers spooling to 2.4 bar with active torque-vectoring rear differential and titanium wastegates.
+              </p>
+            </div>
+          </div>
+          <div class="margin-panel-right">
+            <div class="carbon-card">
+              <div class="card-chapter-tag">CHASSIS DYNAMICS</div>
+              <h3 class="card-title">APEX TRACTION</h3>
+              <p class="card-desc">
+                0–100 km/h in 2.2s • Lateral grip 2.1G on bespoke Pirelli Trofeo RS rubber with carbon-ceramic matrix braking.
+              </p>
+            </div>
+          </div>
+        </section>
+
+        <!-- SECTION 4 — TRACK (62% – 80% Scroll | Airborne Crest Jump & Twin Exhaust Flames) -->
+        <section class="story-panel" id="section-track" data-range="0.62,0.80">
+          <div class="margin-panel-left">
+            <div class="carbon-quote-card">
+              <div class="quote-bar"></div>
+              <div class="card-chapter-tag">04 // DOWNFORCE</div>
+              <h3 class="card-title">DEFY GRAVITY.</h3>
+              <p class="card-desc">
+                Active swan-neck carbon wing generates 920 kg of downforce to pin the chassis on high-speed crests and high-velocity transitions.
+              </p>
+            </div>
+          </div>
+          <div class="margin-panel-right">
+            <div class="stat-pill">
+              <div class="stat-pill-row">
+                <div class="stat-pill-item">
+                  <span class="stat-pill-label">STATUS</span>
+                  <span class="stat-pill-val" style="color: #F59E0B;">AIRBORNE CREST</span>
+                </div>
+                <div class="telemetry-divider" style="width: 100%; height: 1px;"></div>
+                <div class="stat-pill-item">
+                  <span class="stat-pill-label">EXHAUST TEMP</span>
+                  <span class="stat-pill-val">980<span>°C</span></span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- SECTION 5 — RESERVE (82% – 100% Scroll | Wet Asphalt Landing & Golden Rear Hero Stance) -->
+        <section class="story-panel" id="section-reserve" data-range="0.82,1.00">
+          <div class="margin-panel-left">
+            <div class="carbon-card">
+              <div class="card-chapter-tag">05 // FINAL EDITION</div>
+              <h3 class="card-title">VALKYRIE GT-R FINAL EDITION</h3>
+              <p class="card-desc">
+                Limited to 40 numbered chassis worldwide. Bespoke carbon & titanium specification. Uncompromising mechanical perfection.
+              </p>
+              <button class="reserve-cta-btn" id="panel-reserve-btn">
+                RESERVE ALLOCATION — $420,000
+              </button>
+            </div>
+          </div>
+          <div class="margin-panel-right">
+            <div class="stagger-card-list">
+              <div class="stagger-card">
+                <span class="stagger-num">01</span>
+                <div class="stagger-info">
+                  <span class="stagger-title">1,180 HP TWIN-TURBO V8</span>
+                  <span class="stagger-sub">FLAT-PLANE CRANKSHAFT</span>
+                </div>
+              </div>
+              <div class="stagger-card">
+                <span class="stagger-num">02</span>
+                <div class="stagger-info">
+                  <span class="stagger-title">TITANIUM TRIPLE EXHAUST</span>
+                  <span class="stagger-sub">BLUE-FLAME INCONEL CORE</span>
+                </div>
+              </div>
+              <div class="stagger-card">
+                <span class="stagger-num">03</span>
+                <div class="stagger-info">
+                  <span class="stagger-title">372 KM/H TOP SPEED</span>
+                  <span class="stagger-sub">ACTIVE AERO VECTORING</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+      </div>
+    </div>
+  </main>
+
+  <!-- ========================================================================
+       POST-SCROLL LUXURY CONCIERGE FOOTER & ALLOCATION FORM
+       ======================================================================== -->
+  <footer class="luxury-footer" id="concierge-footer">
+    <div class="footer-ambient-glow"></div>
+
+    <div class="footer-header">
+      <div class="footer-subtitle-top">AURELIA BESPOKE AUTOMOBILI</div>
+      <h2 class="footer-main-title">PRIVATE CLIENT CONCIERGE</h2>
+      <p class="footer-desc">
+        Each Valkyrie GT-R is commissioned through private audience with our chief aerodynamicist and master engine craftsman. Only 40 allocations will ever exist.
+      </p>
+    </div>
+
+    <!-- Technical Specifications Grid -->
+    <div class="specs-overview-section">
+      <div class="specs-grid-title">TELEMETRY BENCHMARK & SPECIFICATIONS</div>
+      <div class="specs-grid">
+        <div class="spec-grid-item">
+          <div class="spec-item-key">ENGINE ARCHITECTURE</div>
+          <div class="spec-item-val">4.0L V8 <span>TT</span></div>
+        </div>
+        <div class="spec-grid-item">
+          <div class="spec-item-key">MAX POWER OUTPUT</div>
+          <div class="spec-item-val">1,180 <span>HP</span></div>
+        </div>
+        <div class="spec-grid-item">
+          <div class="spec-item-key">PEAK TORQUE</div>
+          <div class="spec-item-val">1,150 <span>NM</span></div>
+        </div>
+        <div class="spec-grid-item">
+          <div class="spec-item-key">0–100 KM/H SPRINT</div>
+          <div class="spec-item-val">2.2 <span>SEC</span></div>
+        </div>
+        <div class="spec-grid-item">
+          <div class="spec-item-key">MAX TERMINAL VELOCITY</div>
+          <div class="spec-item-val">372 <span>KM/H</span></div>
+        </div>
+        <div class="spec-grid-item">
+          <div class="spec-item-key">PEAK DOWNFORCE</div>
+          <div class="spec-item-val">920 <span>KG</span></div>
+        </div>
+        <div class="spec-grid-item">
+          <div class="spec-item-key">DRY CURB MASS</div>
+          <div class="spec-item-val">1,240 <span>KG</span></div>
+        </div>
+        <div class="spec-grid-item">
+          <div class="spec-item-key">LATERAL CORNERING</div>
+          <div class="spec-item-val">2.1 <span>G</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Private Allocation Inquiry Form -->
+    <div class="concierge-form-section" id="allocation-form-section">
+      <div class="concierge-form-head">
+        <div>
+          <h3 class="form-head-title">COMMISSION AN ALLOCATION</h3>
+          <p style="font-size: 0.8rem; color: var(--text-silver); margin-top: 4px;">Entry build slot reservation deposit: $420,000 USD</p>
+        </div>
+        <span class="form-head-badge">CHASSIS 01–40 STRICT MONIKER</span>
+      </div>
+
+      <form id="allocation-form">
+        <div class="form-grid">
+          <div>
+            <label class="form-label" for="client-name">Full Name *</label>
+            <input type="text" id="client-name" class="form-input" placeholder="e.g. Lord Alexander Sinclair" required>
+          </div>
+          <div>
+            <label class="form-label" for="client-email">Email Address *</label>
+            <input type="email" id="client-email" class="form-input" placeholder="client@privateoffice.com" required>
+          </div>
+          <div>
+            <label class="form-label" for="client-phone">Direct Telephone *</label>
+            <input type="tel" id="client-phone" class="form-input" placeholder="+1 (555) 019-2831" required>
+          </div>
+          <div>
+            <label class="form-label" for="client-region">Jurisdiction / Country *</label>
+            <input type="text" id="client-region" class="form-input" placeholder="Monaco, Switzerland, USA, UAE..." required>
+          </div>
+
+          <div class="form-group-full">
+            <label class="form-label">Select Preferred Chassis Build Slot (#01 to #40)</label>
+            <div class="chassis-selector-wrap">
+              <div class="chassis-badge-grid" id="chassis-grid">
+                <!-- Dynamically populated chassis numbers -->
+              </div>
+            </div>
+            <input type="hidden" id="selected-chassis-input" value="07">
+          </div>
+
+          <div>
+            <label class="form-label" for="spec-exterior">Bespoke Exterior Livery</label>
+            <select id="spec-exterior" class="form-select">
+              <option value="Exposed Liquid Carbon Gloss">Exposed Liquid Carbon Gloss (Standard)</option>
+              <option value="Forged Carbon with Gold Leaf Accents">Forged Carbon with 24k Gold Flake</option>
+              <option value="Nero Noctis Satin Stealth">Nero Noctis Satin Stealth</option>
+              <option value="Giallo Aurelia Trophy Yellow">Giallo Aurelia Trophy Yellow</option>
+              <option value="Rosso Competizione Metallic">Rosso Competizione Metallic</option>
+            </select>
+          </div>
+
+          <div>
+            <label class="form-label" for="spec-interior">Interior Cockpit Specification</label>
+            <select id="spec-interior" class="form-select">
+              <option value="Alcantara Nero with Amber Stitching">Alcantara Nero with Amber Contrast Stitching</option>
+              <option value="Saddle Tan Italian Semi-Aniline Leather">Saddle Tan Italian Semi-Aniline Leather</option>
+              <option value="Full Ultra-Lightweight Carbon Race Buckets">Full Ultra-Lightweight Carbon Race Buckets</option>
+              <option value="Titanium Grey Monogrammed Clubsport">Titanium Grey Monogrammed Clubsport</option>
+            </select>
+          </div>
+
+          <div class="form-group-full">
+            <label class="form-label" for="client-notes">Special Requests / Racing Provenance</label>
+            <textarea id="client-notes" class="form-textarea" placeholder="Specify garage logistics, FIA homologation requirements, bespoke plaque engraving text, or preferred delivery ceremony at Monza or Circuit de Spa..."></textarea>
+          </div>
+        </div>
+
+        <div class="form-submit-row">
+          <div class="form-note">
+            * Formal commission contracts are issued subject to chassis verification and Aurelia Bespoke compliance vetting.
+          </div>
+          <button type="submit" class="submit-inquiry-btn">
+            TRANSMIT COMMISSION DOSSIER
+          </button>
+        </div>
+      </form>
+
+      <!-- Form Submission Confirmation Banner -->
+      <div class="form-success-banner" id="form-success-banner">
+        <div class="success-badge">DOSSIER TRANSMITTED TO ATELIER PRINCIPAL</div>
+        <div class="success-details" id="success-details-text">
+          Reservation token generated: <strong>VALKYRIE-GT-R-ALLOC-07-2026</strong>.<br>
+          Our Private Client Director will contact you within 4 hours via secure encrypted line.
+        </div>
+      </div>
+    </div>
+
+    <!-- Footer Bottom Details -->
+    <div class="footer-bottom">
+      <div class="footer-brand-sig">
+        © 2026 AURELIA BESPOKE AUTOMOBILI S.P.A. • VALKYRIE GT-R DIVISION
+      </div>
+      <div class="footer-atelier-info">
+        <span>ATELIER: VIA EMILIA EST, MODENA</span>
+        <span>TEST FACILITY: SILVERSTONE GP CIRCUIT</span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ========================================================================
+       INTERACTIVE SPEC MODAL
+       ======================================================================== -->
+  <div class="modal-backdrop" id="spec-modal">
+    <div class="modal-container">
+      <div class="modal-header">
+        <div class="modal-title">VALKYRIE GT-R // COMPLETE DOSSIER</div>
+        <button class="modal-close-btn" id="modal-close-btn" aria-label="Close modal">&times;</button>
+      </div>
+      <div class="modal-body">
+        <table class="modal-spec-table">
+          <tbody>
+            <tr>
+              <td>Engine Configuration</td>
+              <td>4.0-Litre 90° Flat-Plane Crank Twin-Turbocharged V8</td>
+            </tr>
+            <tr>
+              <td>Forced Induction</td>
+              <td>Twin Ceramic Ball-Bearing Turbochargers • <span>2.4 Bar Boost</span></td>
+            </tr>
+            <tr>
+              <td>Peak Power</td>
+              <td><span>1,180 HP</span> @ 8,750 RPM</td>
+            </tr>
+            <tr>
+              <td>Peak Torque</td>
+              <td><span>1,150 Nm</span> @ 3,200 – 7,400 RPM</td>
+            </tr>
+            <tr>
+              <td>Transmission</td>
+              <td>7-Speed Dual-Clutch Transaxle with Electro-Hydraulic Paddle Shift</td>
+            </tr>
+            <tr>
+              <td>Chassis Construction</td>
+              <td>Full Pre-Preg Carbon Fiber Monocoque with Titanium Subframes</td>
+            </tr>
+            <tr>
+              <td>Dry Mass</td>
+              <td><span>1,240 kg</span> (Power-to-weight: 0.95 HP/kg)</td>
+            </tr>
+            <tr>
+              <td>Aerodynamics</td>
+              <td>Active Swan-Neck Dual-Element Rear Wing • <span>920 kg @ 280 km/h</span></td>
+            </tr>
+            <tr>
+              <td>Exhaust System</td>
+              <td>Inconel 625 & 3D-Printed Titanium Triple Center-Exit with Active Valves</td>
+            </tr>
+            <tr>
+              <td>Braking</td>
+              <td>Carbon-Ceramic Matrix (CCM-R) 410mm Front / 390mm Rear • 6-Piston Monobloc</td>
+            </tr>
+            <tr>
+              <td>Tires</td>
+              <td>Pirelli P Zero Trofeo RS Bespoke Compound (265/35 ZR20 F, 345/30 ZR21 R)</td>
+            </tr>
+            <tr>
+              <td>Production Run</td>
+              <td>Strictly Limited to <span>40 Numbered Units</span> Worldwide</td>
+            </tr>
+            <tr>
+              <td>MSRP Allocation Base</td>
+              <td><span>$420,000 USD</span> (Plus bespoke customization options)</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <div class="modal-actions">
+          <button class="modal-btn-sec" id="modal-dismiss-btn">CLOSE DOSSIER</button>
+          <button class="cta-nav-btn" id="modal-book-btn">PROCEED TO ALLOCATION FORM</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Application Logic -->
+  <script src="./app.js"></script>
+</body>
+</html>

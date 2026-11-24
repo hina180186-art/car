@@ -1,0 +1,20 @@
+{
+  "name": "valkyrie-gt-r",
+  "version": "1.0.0",
+  "description": "Ultra-Luxury Automotive Scrollytelling Website for VALKYRIE GT-R (Aurelia Bespoke Automobili)",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "generate": "node generate-manifest.js"
+  },
+  "keywords": [
+    "scrollytelling",
+    "supercar",
+    "gsap",
+    "lenis",
+    "canvas",
+    "luxury"
+  ],
+  "author": "Aurelia Bespoke Automobili",
+  "license": "MIT"
+}
